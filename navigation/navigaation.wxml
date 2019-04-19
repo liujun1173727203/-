@@ -1,0 +1,160 @@
+<!--index.wxml-->
+<view class="navbar">
+  <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">{{item}}</text>
+</view>
+<!--index.wxml-->
+<view class="swiper-tab">
+  <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">甩物区</view>
+  <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">求助区</view>
+</view>
+
+<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">
+  <swiper-item>
+    <view class='shuai'>
+      <view class='add_pic'>
+        <text class='pic_word'>添加图片</text>
+        <view class='pic_image'>
+          <image class='pic_jia' src='/resources/tianjiatupian.png'></image>
+        </view>
+      </view>
+      <view class='kuai1'>
+        <text class='name_word'>作者</text>
+        <view class='book_name'>
+          <input class='name_input' maxlength="10" placeholder='复习资料按某级某校某学科复习资料格式'></input>
+        </view>
+      </view>
+      <view class='kuai2'>
+        <text class='topic_jianjie'>简介</text>
+        <view class='jianjie'>
+          <textarea class='jianjie_input' maxlength="100"></textarea>
+        </view>
+      </view>
+      <view class='kuai3'>
+        <text class='xiangqing'>图书详情</text>
+        <view class='xiang'>
+          <view class='price'>
+            <text class='price_text'>价格</text>
+            <input class='price_input' value='0'></input>
+            <text class='danwei'>元</text>
+          </view>
+          <view class='type'>
+            <view class='arrow'></view>
+            <text class='type_name'>类型</text>
+            <picker bindchange='bindPcker' value='{{index}}' range='{{array}}'>
+              <view class="type_picker">
+                {{array[index]}}
+              </view>
+            </picker>
+          </view>
+          <view class='time'>
+            <view class='arrow'></view>
+            <text class='time_name'>截止日期</text>
+            <picker mode="date" value="{{date}}" start="2018-09-01" end="2027-09-01" bindchange="bindDteChange">
+              <view class="time_picker">
+                {{date}}
+              </view>
+            </picker>
+          </view>
+          <view class='posun'>
+            <view class='arrow'></view>
+            <text class='posun_name'>破损程度</text>
+            <picker bindchange='bindPcker' value='{{index}}' range="{{po}}">
+              <view class="posun_picker">
+                {{po[index]}}
+              </view>
+            </picker>
+          </view>
+        </view>
+      </view>
+      <view class='kuai4'>
+        <text class='contact'>联系方式</text>
+        <view class='contact_mode'>
+          <view class='mode'>
+            <text class='p'>电话号码</text>
+            <input class='input' maxlength="20"></input>
+          </view>
+          <view class='mode'>
+            <text class='p'>联系人</text>
+            <input class='input' maxlength="20"></input>
+          </view>
+          <view class='mode'>
+            <text class='p'>微信</text>
+            <input class='input' maxlength="20"></input>
+          </view>
+          <view class='mode'>
+            <text class='p'>QQ</text>
+            <input class='input' maxlength="20"></input>
+          </view>
+        </view>
+      </view>
+      <view class='kuai5'>
+        <navigator url="/shuai/shuai?title=shuai" open-type="redirect" hover-class="other-navigator-hover">
+          <button class='button'>提交</button>
+        </navigator>
+        <view class='bb'></view>
+      </view>
+    </view>
+  </swiper-item>
+  <swiper-item>
+    <view class='shuai'>
+      <view class='add_pic'>
+        <text class='pic_word'>添加图片</text>
+        <view class='pic_image'>
+          <image class='pic_jia' src='/resources/tianjiatupian.png'></image>
+        </view>
+      </view>
+      <view class='kuai1'>
+        <text class='name_word'>图书名称</text>
+        <view class='book_name'>
+          <input class='name_input' maxlength="20"></input>
+        </view>
+      </view>
+      <view class='kuai2'>
+        <text class='topic_jianjie'>图书详情</text>
+        <view class='jianjie'>
+          <textarea class='jianjie_input' maxlength="100"></textarea>
+        </view>
+      </view>
+      <view class='qiu_kuai3'>
+        <text class='xiangqing'>图书类型</text>
+        <view class='qiu_xiang'>
+          <view class='type'>
+            <view class='arrow'></view>
+            <picker bindchange='bindPcker' value='{{index}}' range='{{array}}'>
+              <view class="type_picker">
+                {{array[index]}}
+              </view>
+            </picker>
+          </view>
+        </view>
+      </view>
+      <view class='qiu_kuai4'>
+        <text class='contact'>联系方式</text>
+        <view class='contact_mode'>
+          <view class='mode'>
+            <text class='p'>电话号码</text>
+            <input class='input' maxlength="20"></input>
+          </view>
+          <view class='mode'>
+            <text class='p'>联系人</text>
+            <input class='input' maxlength="20"></input>
+          </view>
+          <view class='mode'>
+            <text class='p'>微信</text>
+            <input class='input' maxlength="20"></input>
+          </view>
+          <view class='mode'>
+            <text class='p'>QQ</text>
+            <input class='input' maxlength="20"></input>
+          </view>
+        </view>
+      </view>
+      <view class='kuai5'>
+        <navigator url="/shuai/shuai?title=shuai" open-type="redirect" hover-class="other-navigator-hover">
+          <button class='button'>提交</button>
+        </navigator>
+        <view class='bb'></view>
+      </view>
+    </view>
+  </swiper-item>
+</swiper>
