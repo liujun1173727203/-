@@ -204,7 +204,7 @@ int main() {
 					cout<<"持"<<chess<<"获胜"<<endl;
 					break;
 				}
-				first.tips(chess);
+				first.tips(chess1);
 			} else {
 				second.getab(x,y);
 				second.IfError();
@@ -215,7 +215,7 @@ int main() {
 					cout<<"持"<<chess1<<"获胜"<<endl; 
 					break;
 				}
-				second.tips(chess1);
+				second.tips(chess);
 			}
 			j.PrintBoard(size);
 			flag++;
@@ -224,9 +224,9 @@ int main() {
 			cout<<"持平"<<endl;
 			j.Draw();
 		};
+		j.PrintBoard(size);
 		m=j.ChoiceOfChar(); //决定是否重新开始
 	}while(m==1);
-	j.PrintBoard(size);
 	j.PrintStats();
 	return 0;
 }
