@@ -19,8 +19,10 @@ char flashboard(int a) {
 			};
 		}
 	}
-	cout<<"请选择先手持O或者X：";
-	cin>>chess;
+	do {
+		cout<<"请选择先手持O或者X：";
+		cin>>chess;
+	} while(chess!='O'&&chess!='X');
 	return chess;
 } 																								//初始化棋盘
 class judge {
@@ -101,25 +103,46 @@ class  PromptTurnX {
 					cout<<"该位置已经落子，请重新输入：";
 					cin>>x>>y;
 					getab(x,y);
-				}
-				else
-				{
+				} else {
 					flag=0;
 				};
-			}while(flag==-1);
+			} while(flag==-1);
 		}																//判断出错
-		int judgesuccess(char chess) {
-			if(board[a][b]==board[a-1][b]==board[a+1][b]==chess)
-				return 1;
-			else if(board[a][b]==board[a][b-1]==board[a][b+1]==chess)
-				return 1;
-			else if(board[a][b]==board[a-1][b-1]==board[a+1][b+1]==chess)
-				return 1;
-			else if(board[a][b]==board[a-1][b+1]==board[a+1][b-1]==chess)
-				return 1;
-			else
-				return 0;
-		}																	//判断输赢
+			int judgesuccess(char chess) {
+			int flag=0;
+			for (int ROW=0; ROW<=size; ROW++) {
+				for(int COLUMN=0; COLUMN<=size; COLUMN++) {
+					if(board[ROW][COLUMN]==chess) {
+						if(board[ROW][COLUMN+1]==chess) {
+							if(board[ROW][COLUMN+2]==chess) {
+								return 1;
+								flag=1;
+								break;
+							};
+						} else if(board[ROW+1][COLUMN+1]==chess) {
+							if(board[ROW+2][COLUMN+2]==chess) {
+								return 1;
+								flag=1;
+								break;
+							};
+						} else if(board[ROW+1][COLUMN]==chess) {
+							if(board[ROW+2][COLUMN]==chess) {
+								return 1;
+								flag=1;
+								break;
+							};
+						} else if(board[ROW-1][COLUMN+1]==chess) {
+							if(board[ROW-2][COLUMN+2]==chess) {
+								return 1;
+								flag=1;
+								break;
+							};
+						};
+					};
+				};
+				if(flag==1)break;
+			};
+		}																//判断输赢
 		void tips(char chess) {
 			cout<<"请持"<<chess<<"落子:"<<endl;
 		}																//提示落子
@@ -149,25 +172,46 @@ class  PromptTurnY {
 					cout<<"该位置已经落子，请重新输入：";
 					cin>>x>>y;
 					getab(x,y);
-				}
-				else
-				{
+				} else {
 					flag=0;
 				};
-			}while(flag==-1);
+			} while(flag==-1);
 		}																//判断出错
-		int judgesuccess(char chess1) {
-			if(board[a][b]==board[a-1][b]==board[a+1][b]==chess1)
-				return 1;
-			else if(board[a][b]==board[a][b-1]==board[a][b+1]==chess1)
-				return 1;
-			else if(board[a][b]==board[a-1][b-1]==board[a+1][b+1]==chess1)
-				return 1;
-			else if(board[a][b]==board[a-1][b+1]==board[a+1][b-1]==chess1)
-				return 1;
-			else
-				return 0;
-		}																	//判断输赢
+		int judgesuccess(char chess) {
+			int flag=0;
+			for (int ROW=0; ROW<=size; ROW++) {
+				for(int COLUMN=0; COLUMN<=size; COLUMN++) {
+					if(board[ROW][COLUMN]==chess) {
+						if(board[ROW][COLUMN+1]==chess) {
+							if(board[ROW][COLUMN+2]==chess) {
+								return 1;
+								flag=1;
+								break;
+							};
+						} else if(board[ROW+1][COLUMN+1]==chess) {
+							if(board[ROW+2][COLUMN+2]==chess) {
+								return 1;
+								flag=1;
+								break;
+							};
+						} else if(board[ROW+1][COLUMN]==chess) {
+							if(board[ROW+2][COLUMN]==chess) {
+								return 1;
+								flag=1;
+								break;
+							};
+						} else if(board[ROW-1][COLUMN+1]==chess) {
+							if(board[ROW-2][COLUMN+2]==chess) {
+								return 1;
+								flag=1;
+								break;
+							};
+						};
+					};
+				};
+				if(flag==1)break;
+			};
+		}																		//判断输赢
 		void tips(char chess) {
 			cout<<"请持"<<chess<<"落子:"<<endl;
 		}	                                                              //提示落子
@@ -178,21 +222,26 @@ int main() {
 	PromptTurnY second;
 	judge j;
 	int m=0;
+
 	cout<<"棋盘宽度为：";
-	cin>>size;
+	do {
+		cin>>size;
+		if(size<3)
+			cout<<"棋盘大小最小为3，请重新输入：";
+	} while(size<3);
 	chess=flashboard(size);
 	if(chess=='O') {
 		chess1='X';
 	} else {
 		chess1='O';
-	}; 
-	j.PrintBoard(size);
+	};
 	do {
 		int flag=0;			//确定落子几次
 		int flag1=0;       //确定输赢
 		while(flag<size*size) {
 			int x,y;
-			cout<<"请输入落棋坐标："; 
+			j.PrintBoard(size);
+			cout<<"请输入落棋坐标：";
 			cin>>x>>y;
 			if(flag%2==0) {
 				first.getab(x,y);
@@ -201,6 +250,7 @@ int main() {
 				flag1=first.judgesuccess(chess);
 				if(flag1==1) {
 					j.FirstP();
+						j.PrintBoard(size);
 					cout<<"持"<<chess<<"获胜"<<endl;
 					break;
 				}
@@ -212,21 +262,19 @@ int main() {
 				flag1=first.judgesuccess(chess1);
 				if(flag1==1) {
 					j.SecondP();
-					cout<<"持"<<chess1<<"获胜"<<endl; 
+						j.PrintBoard(size);
+					cout<<"持"<<chess1<<"获胜"<<endl;
 					break;
 				}
 				second.tips(chess);
 			}
-			j.PrintBoard(size);
 			flag++;
 		};
 		if (flag==size*size) {
 			cout<<"持平"<<endl;
 			j.Draw();
 		};
-		j.PrintBoard(size);
 		m=j.ChoiceOfChar(); //决定是否重新开始
-	}while(m==1);
-	j.PrintStats();
+	} while(m==1);
 	return 0;
 }
