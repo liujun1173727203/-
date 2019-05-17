@@ -12,22 +12,23 @@ time *build(time *tim1) {
 	return tim1;
 } //创建时间点
 int exam(time *tim1) {
-	if(tim1->month<1||tim1->month>12||tim1->day<1||tim1->year>10000)return 0;
-	if(tim1->month==1||tim1->month==3||tim1->month==5||tim1->month==7||tim1->month==8||tim1->month==10||tim1->month==12) {
-		if(tim1->day<=31)return 1;
-	};
-	if(tim1->month==4||tim1->month==6||tim1->month==9||tim1->month==11) {
-		if(tim1->day<=30)return 1;
-	};
-	if(tim1->month==2&&tim1->year%4==0) {
+	if(tim1->month<1||tim1->month>12||tim1->day<1||tim1->year>10000) {
+		return 0;
+	} else if(tim1->month==1||tim1->month==3||tim1->month==5||tim1->month==7||tim1->month==8||tim1->month==10||tim1->month==12) {
+		if(tim1->day<=31)
+			return 1;
+		else return 0;
+	} else if(tim1->month==4||tim1->month==6||tim1->month==9||tim1->month==11) {
+		if(tim1->day<=30)
+			return 1;
+		else return 0;
+	} else if(tim1->month==2&&tim1->year%4==0) {
 		if(tim1->day<=29)return 1;
 		else return 0;
-	};
-	if(tim1->month==2&&tim1->year%4!=0) {
+	} else if(tim1->month==2&&tim1->year%4!=0) {
 		if(tim1->day<=28)return 1;
 		else return 0;
-	}
-
+	} else return 0;
 }//检查时间是否符合要求；
 int exchang(time *tim1) {
 	int time;
@@ -41,15 +42,17 @@ struct node {
 };
 typedef struct node node;
 node *creat() {
-	node *head,*p;
+	node *head,*p,*p1;
 	head=new node;
+	head->next=NULL;
 	p=head;
+	p1=head;
 	int flag=1,m,date;
 	cout<<"结束请输入'0'"<<endl;
 	while(flag) {
 		time *tim1;
 		tim1=new time;
-		cout<<"请输入数据，支出添加-表示:";
+		cout<<"请输入数据:";
 		cin>>m;
 		if(m==0)break;
 		int i=0;
@@ -67,7 +70,7 @@ node *creat() {
 			s->data=m;
 			s->time=date;
 			p->next=s;
-			p=s;
+			p=s; 
 		} else {
 			flag=0;
 		}
@@ -76,7 +79,7 @@ node *creat() {
 	head=head->next;
 	return head;
 };//创建链表
-node *show(node *head) {
+void show(node *head) {
 	node *p=head;
 	while(p!=NULL) {
 		cout<<p->time/10000<<" "<<p->time%10000/100<<" "<<p->time%100<<"  "<<p->data<<endl;
@@ -84,12 +87,11 @@ node *show(node *head) {
 	};
 
 }//打印链表
-node *add(node *head) {
-	node *p=head,*s,*p2;
+void add(node *head,int m) {
+	node *p=head,*s;
 	time *tim1;
 	tim1=new time;
 	int i=0;
-	int m;
 	int time;
 	s=new node;
 	cout<<"请输入插入数据：";
@@ -103,22 +105,15 @@ node *add(node *head) {
 		}
 	} while(i==0);
 	time=exchang(tim1);
-		s->data=m;
+	s->data=m;
 	s->time=time;
-	if(p->time<=s->time){
-		p2=p;
+	while(p->next!=NULL){
 		p=p->next;
-	}
-	else if(p->time>s->time){
-		p2->next=s;
-		s->next=p->next; 
-	} 
-	else if(p->next==NULL){
-		p->next=s;
-		s->next=NULL;
-	}
+	};
+	p->next=s;
+	s->next=NULL;
+	p=s;
 }//添加结点
-
 node *del(node *head) {
 	cout<<"请输入要删除的数：";
 	int num;
@@ -145,11 +140,60 @@ node *del(node *head) {
 	}
 	return head;
 }//删除结点
-
+node *insertSort( node *head )
+{
+	node  *p1, *prep1, *p2, *prep2, *temp;
+	prep1 = head->next;
+	p1 = prep1->next;
+	//prep1和p1是否需要手动后移
+	bool flag;
+ 
+	while (p1 != NULL)
+	{
+		flag = true;
+		temp = p1;
+		//由于是单向链表，所以只能从头部开始检索
+		for (prep2 = head, p2 = head->next; p2 != p1; prep2 = prep2->next, p2 = p2->next)
+		{
+			//发现第一个较大值
+			if (p2->data > p1->data)
+			{
+				p1 = p1->next;
+				prep1->next = p1;
+				prep2->next = temp;
+				temp->next = p2;
+				flag = false;
+				break;
+			}
+		}
+		//手动后移prep1和p1
+		if (flag)
+		{
+			prep1 = prep1->next;
+			p1 = p1->next;
+		}
+	}
+	return head;
+}
 int main() {
+	cout<<"*********主菜单********"<<endl;
+	cout<<"    1.输入收入记录"<<endl;
+	cout<<"    2.输入支出记录"<<endl;
+	cout<<"    3.查看收入记录"<<endl;
+	cout<<"    4.查看支出记录"<<endl; 
+	cout<<"  5.查看收支平衡情况"<<endl;
+	cout<<"  6.根据日期查找记录"<<endl;
+	cout<<"  7.根据日期修改记录"<<endl;
+	cout<<"  8.根据日期删除记录"<<endl;
+	cout<<"      0.退出系统"<<endl;
+	cout<<"请输入序号：";
+	int j;
+	cin>>j;
+	
 	node *head=creat();
 	add(head);
 	head=del(head);
+	head=insertSort(head);
 	show(head);
 	return 0;
 }
