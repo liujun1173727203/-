@@ -23,19 +23,77 @@ class linklist{
 			void midnode();
 			void rangedelete(elemtype min,elemtype max);
 			node *split(elemtype e);
-			node *intersection(node *head1,node* head2);
+			void *intersection(node *head1,node* head2);
+			void *sum(node *head1,node* head2);
 			void ShowLink();
 			node* gethead(){
 				return head;
 			}
 };
-node* linklist::intersection(node *head1,node* head2){
-	node *q=head1,*q1=head1->next,*s,*p=head2,*p1=head2->next;
+void *linklist::sum(node *head1,node* head2){
+	node *q=head1,*q1=head1->next,*s,*p1=head2->next;
+	head=head1;
 	if(!head1||!head2){
+		cout<<"¿Õ¼¯"<<endl; 
+		return NULL;
+	};
+	if(head1->next->data>head2->next->data){
+			node *q=head1,*q1=head1->next,*s,*p1=head2->next;
+		while(p1&&q1){
+			if(p1->data==q1->data){
+				q=q1;
+				q1=q1->next;
+				p1=p1->next;
+			}
+			else if(q1->data<p1->data){
+				q=q1;
+				q1=q1->next;
+			}
+			else{
+				s=p1->next;
+				p1->next=q1;
+				q->next=p1;
+				q=q->next;
+				p1=s;
+			}
+		}
+		if(q1==NULL){
+			q->next=p1;
+		};
+	}
+	else{
+				node *q=head2,*q1=head2->next,*s,*p1=head1->next;
+		while(p1&&q1){
+			if(p1->data==q1->data){
+				q=q1;
+				q1=q1->next;
+				p1=p1->next;
+			}
+			else if(q1->data<p1->data){
+				q=q1;
+				q1=q1->next;
+			}
+			else{
+				s=p1->next;
+				p1->next=q1;
+				q->next=p1;
+				q=q->next;
+				p1=s;
+			}
+		}
+		if(q1==NULL){
+			q->next=p1;
+		};
+	}
+}
+void* linklist::intersection(node *head1,node* head2){
+	if(!head1||!head2){
+		cout<<"¿Õ¼¯"<<endl;
 		return NULL;
 	}
-	if(head1->data>head2->data){
+	if(head1->next->data>head2->next->data){
 		node *q=head2,*q1=head2->next,*s,*p=head1,*p1=head1->next;
+			head=q;
 		while(q->next&&p->next){
 			if(q1->data>p1->data){
 				p=p1;
@@ -53,6 +111,8 @@ node* linklist::intersection(node *head1,node* head2){
 		}
 	}
 	else{ 
+	node *q=head1,*q1=head1->next,*s,*p=head2,*p1=head2->next;
+		head=q;
 		while(q->next&&p->next){
 			if(q1->data>p1->data){
 				p=p1;
@@ -69,7 +129,6 @@ node* linklist::intersection(node *head1,node* head2){
 			}
 		}
 		q->next=NULL;
-		return head1;
 	} 
 }
 node* linklist::split(elemtype e){
@@ -186,12 +245,13 @@ void linklist::ShowLink(){
 
 int main(int argc, char** argv) {
 	linklist demo,demo1;
-	node *p,*q;
+	node *p,*q,*w;
 	p=demo.gethead();
 	q=demo1.gethead();
-	demo.InitLink(5);
-	demo1.InitLink(5);
-	p=demo.intersection(p,q);
+	demo.InitLink(3);
+	demo1.InitLink(3);
+//	demo.sum(p,q);
+	demo.intersection(p,q);
 //	demo.split(3);
 //	demo.rangedelete(2,4);
 //	demo.midnode();
