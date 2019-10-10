@@ -30,12 +30,30 @@ class linklist{
 			}
 };
 node* linklist::intersection(node *head1,node* head2){
-	node *q=head1,*q1=head->next,*s,*p=head2,*p1=head2->next;
-	if(!q||!p){
+	node *q=head1,*q1=head1->next,*s,*p=head2,*p1=head2->next;
+	if(!head1||!head2){
 		return NULL;
 	}
+	if(head1->data>head2->data){
+		node *q=head2,*q1=head2->next,*s,*p=head1,*p1=head1->next;
+		while(q->next&&p->next){
+			if(q1->data>p1->data){
+				p=p1;
+				p1=p1->next; 
+			}
+			else if(q1->data<p1->data){
+				q->next=q1->next;
+				delete q1;
+				q1=q->next;
+			}
+			else{
+				q=q1;
+				q1=q1->next;
+			}
+		}
+	}
 	else{ 
-		while(q1->next&&p1->next){
+		while(q->next&&p->next){
 			if(q1->data>p1->data){
 				p=p1;
 				p1=p1->next; 
