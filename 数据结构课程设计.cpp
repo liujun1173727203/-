@@ -119,7 +119,7 @@ void linklist::add(){
 			cin>>s->name;
 			cout<<endl; 
 			cout<<"输入学生数据结构成绩：";
-			cin>>s->mathscore;
+			cin>>s->datascore;
 			cout<<endl;
 			cout<<"输入学生英语成绩：";
 			cin>>s->engscore; 
@@ -141,8 +141,8 @@ void linklist::ShowLink(){
 	cout<<"finish"<<endl;
 }
 void linklist::orderfromId(){
-	node *q=head,*p=head->next,*s=p->next,*a;
 	for(int i=0;i<flag;i++){
+		node *q=head,*p=head->next,*s=p->next,*a;
 		for(int j=i+1;j<flag;j++){
 			if(p->id>=s->id){
 				p->next=s->next;
@@ -232,8 +232,8 @@ int main(int argc, char** argv) {
 	cin>>m;
 	cout<<"输入数据："<<endl; 
 	link.InitLink(m);
-	link.showfromId(1);
 	int mark=1;
+	cout<<"0:初始化"<<endl; 
 	cout<<"1：根据id排序"<<endl; 
 	cout<<"2：根据英语成绩排序；"<<endl;
 	cout<<"3：根据数学成绩排序"<<endl;
@@ -249,6 +249,7 @@ int main(int argc, char** argv) {
 		cout<<"选择操作：";
 		cin>>a;
 		switch (a){
+			case 0: 	link.InitLink(m);break;
 			case 1: link.orderfromId();break;
 			case 2: link.orderfromEngscore();break;
 			case 3: link.orderfromMathscore();break;

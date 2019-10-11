@@ -33,7 +33,15 @@ class linklist{
 void *linklist::sum(node *head1,node* head2){
 	node *q=head1,*q1=head1->next,*s,*p1=head2->next;
 	head=head1;
-	if(!head1||!head2){
+	if(head1&&!head2){
+		head=head1; 
+		return NULL;
+	};
+	if(!head1&&head2){
+		head=head2; 
+		return NULL;
+	};
+	if(!head1&&!head2){
 		cout<<"¿Õ¼¯"<<endl; 
 		return NULL;
 	};
