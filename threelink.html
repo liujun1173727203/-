@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+</head>
+<script type="text/javascript" src="hello.js"></script>
+
+<body>
+    <div id="b"></div>
+    <script>
+        createfirstSelect();
+        function createfirstSelect() {
+            var div = document.getElementById("b");
+            var select = document.createElement("select")
+            select.setAttribute("id", 0)
+            select.addEventListener("change", changeSecondSelect)
+            div.appendChild(select)
+            for (let i of li) {
+                var opt = document.createElement("option")
+                var txt = document.createTextNode(i.a)
+                opt.value = i.id;
+                select.appendChild(opt)
+                opt.appendChild(txt)
+            }
+            createSecondSelect()
+        }
+        function changeSecondSelect() {
+            var id = document.getElementById("0")
+            var id1 = document.getElementById("1")
+            if (id1.options == null) {
+                for (let i of li[id.value].list) {
+                    var opt = document.createElement("option")
+                    var txt = document.createTextNode(i.a)
+                    opt.value = i.id
+                    id1.appendChild(opt)
+                    opt.appendChild(txt)
+                }
+            }
+            else {
+                id1.options.length = 0;
+                for (let i of li[id.value].list) {
+                    var opt = document.createElement("option")
+                    var txt = document.createTextNode(i.a)
+                    opt.value = i.id
+                    id1.appendChild(opt)
+                    opt.appendChild(txt)
+                }
+            }
+            changeThirdSelect()
+        }
+        function createSecondSelect() {
+            var id = document.getElementById("0")
+            var div = document.getElementById("b");
+            var select = document.createElement("select")
+            select.addEventListener("change", changeThirdSelect)
+            select.setAttribute("id", 1)
+            div.appendChild(select)
+            for (let i of li[id.value].list) {
+                var opt = document.createElement("option")
+                var txt = document.createTextNode(i.a)
+                opt.value = i.id
+                select.appendChild(opt)
+                opt.appendChild(txt)
+            }
+            createThirdSelect()
+        }
+        function createThirdSelect() {
+            var div = document.getElementById("b")
+            var select = document.createElement("select")
+            var second = document.getElementById("1")
+            var first = document.getElementById("0")
+            select.setAttribute("id", 2)
+            div.appendChild(select)
+            for (let i of li[first.value].list[second.value].list) {
+                var opt = document.createElement("option")
+                var txt = document.createTextNode(i.a)
+                opt.value = i.id
+                select.appendChild(opt)
+                opt.appendChild(txt)
+            }
+        }
+        function changeThirdSelect() {
+            var first = document.getElementById("0")
+            var second = document.getElementById("1")
+            var id = document.getElementById("2")
+            id.options.length = 0;
+         console.log(first.value)
+         console.log(second.value)
+            for (let i of li[first.value].list[second.value].list) {
+                var opt = document.createElement("option")
+                var txt = document.createTextNode(i.a)
+                opt.value = i.id
+                id.appendChild(opt)
+                opt.appendChild(txt)
+            }
+        }
+    </script>
+</body>
+
+</html>
