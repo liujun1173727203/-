@@ -1,0 +1,83 @@
+org.zijit.
+
+
+Ioc 控制反转——以配置文件管理java实例的协作关系，后称依赖注入
+设值注入 IoC容器通过成员变量的setter方法来注入被依赖对象
+构造注入 利用构造器来设置依赖关系的方式
+<beans/>default-autowire 对所以bean有效，<bean/>autowire只对该bean有效
+属性可获取的值：no 不使用自动装配， bean依赖必须通过ref元素定义
+byName：通过setter方法名进行自动装配
+byType：根据setter方法的形参类型来自动装配。
+constructor：与byType类似，区别是用于自动匹配构造器的参数。如果容器不能遭到与构造器参数类型匹配的bean，则抛出异常
+autodetect：Spring容器根据Bean内部结构，自行决定使用constructor或者byType
+
+JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意一个方法；这种动态获取的信息以及动态调用对象的方法的功能称为java语言的反射机制。
+Java反射机制主要提供了以下功能： 在运行时判断任意一个对象所属的类；在运行时构造任意一个类的对象；在运行时判断任意一个类所具有的成员变量和方法；在运行时调用任意一个对象的方法；生成动态代理。
+
+@Component 标注一个普通的Spring Bean类
+@Controller：标注一个控制器组件类
+@Service：标注一个业务逻辑组件类
+@Repository：标注一个DAO组件类
+@Order定义Spring IOC容器仲Bean的执行顺序的优先级，*不影响Bean的加载顺序
+@Target：说明Annotation所修饰的对象范围：Annotation可被用于packages types 类型成员，方法参数和本地变量。在Annotation类型的声明中使用了target可更加清晰其修饰的目标
+@Resource配置依赖 与<property.../>元素的ref属性有相同的效果
+@PostConstruct ,@PreDestroy定制生命周期行为
+@Autowired 指定自动装配 当使用@Autowired标注setter方法时，默认采用byType自动装配策略
+@Qualifier 允许更具Bean的id来执行自动装配
+@EntityScan 用来扫描和发现指定的包及其子包仲的Entity定义
+@EnableJpaRepositories用来扫描和发现指定及其子包中的Repository定义
+@Retention 定义该Annotation被保留的时间长短
+@Documented 用于描述其它类型的annotation应该被作为被标注的程序员的公共API，因此可以被列入javadoc此类的工具文档化。Document是一个被标记注解
+@Inherited 阐述某个被标注的类型是被继承的
+@RestController相当于@ResponseBody+@Controller
+@GetMapping是@RequestMapping（method = RequestMethod.GET)
+@PostMapping是@RequestMapping（method = RequestMethod.POST)
+@Entity 对实体注释。任何Hibernate映射对象都要有这个注释
+@Table 声明此对象映射到数据库的数据表，通过它可以为实体指定表，目录，和schema的名字。如果没有则系统使用默认值（实体的短类名）
+@Version 该注释可用于在实体Bean中添加乐观锁支持
+@GeneratedValue指定主键的生成策略（table:使用表保存id值，identity：identitycolumn swquencr：sqquence auto：根据数据库的不同使用上面三个）
+@Column声明该属性与数据库字段的映射关系
+lombok：简化java代码编写
+@NoArgsConstructor 无参构造函数
+@AllArgsConstructor 全参构造函数
+@Data调用相对应的构造函数
+@Value 把所以成员变量定义为private final 不会生成set方法
+AOP面向切面编程 AspectJ是基于Java语言的Aop框架
+引用@AspectJ支持余姚添加三个库：aspectjweaver.jar,aspectrt.jar,aopalliance.jar
+
+
+${basedir}	存放pom.xml和所有的子目录
+${basedir}/src/main/java	项目的java源代码
+${basedir}/src/main/resources	项目的资源，比如说property文件，springmvc.xml
+${basedir}/src/test/java	项目的测试类，比如说Junit代码
+${basedir}/src/test/resources	测试用的资源
+${basedir}/src/main/webapp/WEB-INF	web应用文件目录，web项目的信息，比如存放web.xml、本地图片、jsp视图页面
+${basedir}/target	打包输出目录
+${basedir}/target/classes	编译输出目录
+${basedir}/target/test-classes	测试编译输出目录
+Test.java	Maven只会自动运行符合该命名规则的测试类
+~/.m2/repository	Maven默认的本地仓库目录位置
+SCM（source control management)标签允许配置自己的代码库
+@批注
+springboot框架
+在Web应用开发这一块，之前的应用一般来说是打包成war包，再发布到相关服务器容器下（例如Tomcat），虽然SpringBoot也可以这么做，但在SpringBoot下更常见的形式是将SpringBoot应用打包成可执行jar包文件。之所以这么做，源于你可以直接将SpringBoot应用看成是一个Java Application，其Web应用可以没有webapp目录（更不用说web.xml了），它推荐使用html页面，并将其作为静态资源使用。
+
+
+JVM java虚拟机
+
+JPA java Persistence API 基于O/R映射的标准规范，（规范只定义规则，不提供实现
+JPA提供的技术  ：
+ORM映射元数据：JPA支持xml和jdk5.0注解两种元数据的形式，元数据描述对象和表之间的映射关系，框架据此将实体对象持久化到数据库表中
+JPA的API 定义规范，以操作实体对象，执行CRUD操作，框架在后台替我们完成所有的事情，摆脱JDBC和SQL的繁琐
+查询语言：通过面向对象而非面向数据库的查询语言查询数据，避免程序的sql语句紧密耦合。定义JPQL和Criteria俩中查询方式
+持久层：即数据访问层，负责数据库的访问，通过DAL对数据库进行SQL语句等操作
+
+JPA通用策略生成器 通过annotation来映射hibernat实体的 基于annotation的hibern主键标识为@Id
+其生成规则由@genneratedValue设定
+
+spring 需要配置JavaPOJO类包的路径以及DAO层接口路径，目的：自动扫描相关注解
+
+
+
+
+
