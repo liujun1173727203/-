@@ -1,0 +1,166 @@
+<html>
+        <head>
+                <meta charset="utf-8">
+                <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"></script>
+            </head>
+<body>
+    <ul style="list-style: none;" class="carousel" id="u">
+        <li id="a1">
+            <div class="b">
+                <img id="b7" src="b7_1180.jpg">
+                <h4 id="b7h4">创造你的优秀作品</h4>
+                <p id="b7h4">针对 Office 进行优化，使用触控屏和Surface触控笔记录想法、编辑文档和准备演讲，专业地完成你的项目。</p>
+            </div>
+        </li>
+        <li id="a2">
+            <div class="b">
+                <img id="b8" src="b8_1180.jpg">
+                <h4 id="b8h4">预装 Windows 10 家庭版</h4>
+                <p id="b7h4">所有熟悉的功能和可信赖的安全性。如果你需要为工作场所提供额外的企业管理和安全工具，可切换为 Windows 10 专业版或购买 Surface Pro 7 商用版。</p>
+            </div>
+        </li>
+        <li id="a3">
+            <div class="b">
+                <img id="b9" src="b9_1180.jpg">
+                <h4 id="b9h4">你就是密码</h4>
+                <p id="b9p">使用 Windows Hello 面部识别免密登录功能安全登录；更快速、更安全地解锁 Surface Pro 7。</p>
+            </div>
+        </li>
+    </ul>
+    <div class="arrow">
+        <div class="arrowWhite">
+            <div class="arrowLeft" onclick="moveLeft()"><img src="left.png"></div>
+        </div>
+        <div class="arrowWhite">
+            <div class="arrowRight" onclick="moveRight()"><img src="right.png"></div>
+        </div>
+    </div>
+    <script>
+        var arry = new Array();
+        var a = new Array();
+        var n = 1, flag = 1;
+        var u = document.getElementById("u")
+        for (let i = 1; i <= 3; i++) {
+            arry[i] = document.getElementById("a" + i).innerHTML
+
+        }
+        setcss()
+        function clea() {
+            for (let i = 1; i <= 3; i++) {
+                a[i] = document.getElementById("a" + i)
+                u.removeChild(a[i])
+            }
+        }
+        function reset(i) {
+            var li = document.createElement("li")
+            li.setAttribute("id", "a" + i)
+            li.innerHTML = arry[n];
+            u.appendChild(li)
+        }
+        function describle(li) {
+        }
+        function moveLeft() {
+            clea()
+            if (flag > 3)
+                flag = 1;
+            n = flag;
+            for (let i = 1; i <= 3; i++) {
+                if (n == 3)
+                    n = 0;
+                n++;
+                if (i == 1) flag = n;
+                reset(i)
+            }
+            setcss()
+        }
+        function setcss() {
+            $("#a2").css({ "margin-right": "80px", "margin-left": "80px" })
+            $("#a1,#a3").css({ "opacity": "0.5", "display": "flex", "align-items": "center" })
+            $("#a1 img,#a3 img").css({ "height": "300px" })
+        }
+        function moveRight() {
+            clea()
+            if (flag > 3)
+                flag = 1;
+            n = flag;
+            for (let i = 1; i <= 3; i++) {
+                n--;
+                if (n == 0) n = 3;
+                if (i == 1) flag = n;
+                reset(i)
+            }
+            setcss()
+        }
+    </script>
+    <style>
+        .b {
+            box-shadow: 1px 0px 21px -11px;
+        }
+
+        .b h4 {
+            padding-left: 20px;
+        }
+
+        .b p {
+            padding: 20px;
+            padding-top: 0px;
+
+        }
+
+        .arrow {
+            top: -370px;
+            position: relative;
+            width: 715px;
+            height: 30px;
+            margin: 0px auto;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .arrowWhite {
+            padding-left: 41px;
+            width: auto;
+            display: flex;
+            align-items: center;
+        }
+
+        .arrowLeft {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            border-radius: 50%;
+            box-shadow: 1px 0px 21px -11px;
+            position: absolute;
+            z-index: 1;
+            background: white;
+            width: 60px;
+            height: 60px;
+        }
+
+        .arrowRight {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            border-radius: 50%;
+            box-shadow: 1px 0px 21px -11px;
+            position: absolute;
+            z-index: 1;
+            background: white;
+            width: 60px;
+            height: 60px;
+            margin-left: -60px;
+        }
+
+        .carousel {
+            margin-top: 300px;
+            overflow: hidden;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            width: 80%;
+            height: auto;
+        }
+    </style>
+</body>
+
+</html>

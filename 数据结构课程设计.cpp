@@ -19,35 +19,35 @@ class linklist{
 				flag=0;
 				head->next=NULL;
 			};
-			void InitLink(int m);		//³õÊ¼»¯±íµ¥
-			void orderfromId();			//¸ù¾ÝidÅÅÐò
-			void orderfromEngscore();	//¸ù¾ÝÓ¢Óï³É¼¨ÅÅÐò£»
-			void orderfromMathscore();	//¸ù¾ÝÊýÑ§³É¼¨ÅÅÐò
-			void orderfromDatascore();	//¸ù¾ÝÊý¾Ý½á¹¹³É¼¨ÅÅÐò 
-			void showfromId(elemtype e);	//Í¨¹ýid²éÕÒÒ»ÃûÑ§ÉúÐÅÏ¢ 
-			void add();				//²åÈëÒ»ÃûÑ§ÉúÐÅÏ¢
-			void changefromId(elemtype e);//Í¨¹ýidÐÞ¸ÄÒ»ÃûÍ¬Ñ§ÐÅÏ¢ 
-			void DeletefromId(elemtype e);		//É¾³ýÒ»ÃûÑ§ÉúÐÅÏ¢ 
-			void ShowLink();			//±íµ¥Êä³ö 
+			void InitLink(int m);		//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			void orderfromId();			//ï¿½ï¿½ï¿½ï¿½idï¿½ï¿½ï¿½ï¿½
+			void orderfromEngscore();	//ï¿½ï¿½ï¿½ï¿½Ó¢ï¿½ï¿½É¼ï¿½ï¿½ï¿½ï¿½ï¿½
+			void orderfromMathscore();	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ§ï¿½É¼ï¿½ï¿½ï¿½ï¿½ï¿½
+			void orderfromDatascore();	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý½á¹¹ï¿½É¼ï¿½ï¿½ï¿½ï¿½ï¿½ 
+			void showfromId(elemtype e);	//Í¨ï¿½ï¿½idï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ñ§ï¿½ï¿½ï¿½ï¿½Ï¢ 
+			void add();				//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ñ§ï¿½ï¿½ï¿½ï¿½Ï¢
+			void changefromId(elemtype e);//Í¨ï¿½ï¿½idï¿½Þ¸ï¿½Ò»ï¿½ï¿½Í¬Ñ§ï¿½ï¿½Ï¢ 
+			void DeletefromId(elemtype e);		//É¾ï¿½ï¿½Ò»ï¿½ï¿½Ñ§ï¿½ï¿½ï¿½ï¿½Ï¢ 
+			void ShowLink();			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 };
 void linklist::InitLink(int m){
 	flag=m;
 	node *p=head,*s;
 	for(int i=0;i<m;i++){
 			s=new node;
-			cout<<"ÊäÈëÑ§ÉúÑ§ºÅ£º";
+			cout<<"ï¿½ï¿½ï¿½ï¿½Ñ§ï¿½ï¿½Ñ§ï¿½Å£ï¿½";
 			cin>>s->id;
 			cout<<endl; 
-			cout<<"ÊäÈëÑ§ÉúÐÕÃû£º";
+			cout<<"ï¿½ï¿½ï¿½ï¿½Ñ§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
 			cin>>s->name;
 			cout<<endl; 
-			cout<<"ÊäÈëÑ§ÉúÊý¾Ý½á¹¹³É¼¨£º";
+			cout<<"ï¿½ï¿½ï¿½ï¿½Ñ§ï¿½ï¿½ï¿½ï¿½ï¿½Ý½á¹¹ï¿½É¼ï¿½ï¿½ï¿½";
 			cin>>s->datascore;
 			cout<<endl;
-			cout<<"ÊäÈëÑ§ÉúÓ¢Óï³É¼¨£º";
+			cout<<"ï¿½ï¿½ï¿½ï¿½Ñ§ï¿½ï¿½Ó¢ï¿½ï¿½É¼ï¿½ï¿½ï¿½";
 			cin>>s->engscore; 
 			cout<<endl;
-			cout<<"ÊäÈëÑ§Éú¸ßÊý³É¼¨£º";
+			cout<<"ï¿½ï¿½ï¿½ï¿½Ñ§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¼ï¿½ï¿½ï¿½";
 			cin>>s->mathscore;
 			cout<<endl;
 			s->next=NULL;
@@ -62,9 +62,9 @@ void linklist::showfromId(elemtype e){
 		q=q->next;
 	}; 
 	if(q->id==e){
-		cout<<"ÐÕÃû£º"<<q->name<<endl<<"Ñ§ºÅ:"<<q->id<<endl<<"Êý¾Ý½á¹¹³É¼¨£º"<<q->datascore<<endl<<"Ó¢Óï³É¼¨£º"<<q->engscore<<endl<<"¸ßÊý³É¼¨£º"<<q->mathscore<<endl; 
+		cout<<"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"<<q->name<<endl<<"Ñ§ï¿½ï¿½:"<<q->id<<endl<<"ï¿½ï¿½ï¿½Ý½á¹¹ï¿½É¼ï¿½ï¿½ï¿½"<<q->datascore<<endl<<"Ó¢ï¿½ï¿½É¼ï¿½ï¿½ï¿½"<<q->engscore<<endl<<"ï¿½ï¿½ï¿½ï¿½ï¿½É¼ï¿½ï¿½ï¿½"<<q->mathscore<<endl; 
 	}else{ 
-		cout<<"Ñ§ºÅ:"<<e<<"²»´æÔÚ"<<endl;
+		cout<<"Ñ§ï¿½ï¿½:"<<e<<"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"<<endl;
 		} 
 }
 void linklist::DeletefromId(elemtype e){
@@ -80,7 +80,7 @@ void linklist::DeletefromId(elemtype e){
 		cout<<"success"<<endl;
 	}
 	else{
-		cout<<"Ñ§ºÅ:"<<e<<"²»´æÔÚ"<<endl; 
+		cout<<"Ñ§ï¿½ï¿½:"<<e<<"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"<<endl; 
 	}
 }
 void linklist::changefromId(elemtype e){
@@ -89,42 +89,42 @@ void linklist::changefromId(elemtype e){
 		q=q->next;
 	}
 	if(q->id==e){
-		 	cout<<"ÊäÈëÑ§ÉúÑ§ºÅ£º";
+		 	cout<<"ï¿½ï¿½ï¿½ï¿½Ñ§ï¿½ï¿½Ñ§ï¿½Å£ï¿½";
 			cin>>q->id;
 			cout<<endl; 
-			cout<<"ÊäÈëÑ§ÉúÐÕÃû£º";
+			cout<<"ï¿½ï¿½ï¿½ï¿½Ñ§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
 			cin>>q->name;
 			cout<<endl; 
-			cout<<"ÊäÈëÑ§ÉúÊý¾Ý½á¹¹³É¼¨£º";
+			cout<<"ï¿½ï¿½ï¿½ï¿½Ñ§ï¿½ï¿½ï¿½ï¿½ï¿½Ý½á¹¹ï¿½É¼ï¿½ï¿½ï¿½";
 			cin>>q->datascore;
 			cout<<endl;
-			cout<<"ÊäÈëÑ§ÉúÓ¢Óï³É¼¨£º";
+			cout<<"ï¿½ï¿½ï¿½ï¿½Ñ§ï¿½ï¿½Ó¢ï¿½ï¿½É¼ï¿½ï¿½ï¿½";
 			cin>>q->engscore; 
 			cout<<endl;
-			cout<<"ÊäÈëÑ§Éú¸ßÊý³É¼¨£º";
+			cout<<"ï¿½ï¿½ï¿½ï¿½Ñ§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¼ï¿½ï¿½ï¿½";
 			cin>>q->mathscore;
 			cout<<"success"<<endl;
 	}
 	else{
-		cout<<"Ñ§ºÅ:"<<e<<"²»´æÔÚ"<<endl;
+		cout<<"Ñ§ï¿½ï¿½:"<<e<<"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"<<endl;
 	};
 }
 void linklist::add(){
 	node *s,*q=head;
 	s=new node;
-		cout<<"ÊäÈëÑ§ÉúÑ§ºÅ£º";
+		cout<<"ï¿½ï¿½ï¿½ï¿½Ñ§ï¿½ï¿½Ñ§ï¿½Å£ï¿½";
 			cin>>s->id;
 			cout<<endl; 
-			cout<<"ÊäÈëÑ§ÉúÐÕÃû£º";
+			cout<<"ï¿½ï¿½ï¿½ï¿½Ñ§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
 			cin>>s->name;
 			cout<<endl; 
-			cout<<"ÊäÈëÑ§ÉúÊý¾Ý½á¹¹³É¼¨£º";
+			cout<<"ï¿½ï¿½ï¿½ï¿½Ñ§ï¿½ï¿½ï¿½ï¿½ï¿½Ý½á¹¹ï¿½É¼ï¿½ï¿½ï¿½";
 			cin>>s->datascore;
 			cout<<endl;
-			cout<<"ÊäÈëÑ§ÉúÓ¢Óï³É¼¨£º";
+			cout<<"ï¿½ï¿½ï¿½ï¿½Ñ§ï¿½ï¿½Ó¢ï¿½ï¿½É¼ï¿½ï¿½ï¿½";
 			cin>>s->engscore; 
 			cout<<endl;
-			cout<<"ÊäÈëÑ§Éú¸ßÊý³É¼¨£º";
+			cout<<"ï¿½ï¿½ï¿½ï¿½Ñ§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¼ï¿½ï¿½ï¿½";
 			cin>>s->mathscore;
 			cout<<endl;
 			s->next=q->next;
@@ -135,7 +135,7 @@ void linklist::add(){
 void linklist::ShowLink(){
 	node *q=head->next;
 	while(q){
-			cout<<"ÐÕÃû£º"<<q->name<<endl<<"Ñ§ºÅ:"<<q->id<<endl<<"Êý¾Ý½á¹¹³É¼¨£º"<<q->datascore<<endl<<"Ó¢Óï³É¼¨£º"<<q->engscore<<endl<<"¸ßÊý³É¼¨£º"<<q->mathscore<<endl; 
+			cout<<"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"<<q->name<<endl<<"Ñ§ï¿½ï¿½:"<<q->id<<endl<<"ï¿½ï¿½ï¿½Ý½á¹¹ï¿½É¼ï¿½ï¿½ï¿½"<<q->datascore<<endl<<"Ó¢ï¿½ï¿½É¼ï¿½ï¿½ï¿½"<<q->engscore<<endl<<"ï¿½ï¿½ï¿½ï¿½ï¿½É¼ï¿½ï¿½ï¿½"<<q->mathscore<<endl; 
 			q=q->next;
 	}
 	cout<<"finish"<<endl;
@@ -227,26 +227,26 @@ void linklist::orderfromMathscore(){
 
 int main(int argc, char** argv) {
 	linklist link;
-	cout<<"±íµ¥´óÐ¡Îª£º";
+	cout<<"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Îªï¿½ï¿½";
 	int m;
 	cin>>m;
-	cout<<"ÊäÈëÊý¾Ý£º"<<endl; 
+	cout<<"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý£ï¿½"<<endl; 
 	link.InitLink(m);
 	int mark=1;
-	cout<<"0:³õÊ¼»¯"<<endl; 
-	cout<<"1£º¸ù¾ÝidÅÅÐò"<<endl; 
-	cout<<"2£º¸ù¾ÝÓ¢Óï³É¼¨ÅÅÐò£»"<<endl;
-	cout<<"3£º¸ù¾ÝÊýÑ§³É¼¨ÅÅÐò"<<endl;
-	cout<<"4£º¸ù¾ÝÊý¾Ý½á¹¹³É¼¨ÅÅÐò "<<endl;
-	cout<<"5£ºÍ¨¹ýid²éÕÒÒ»ÃûÑ§ÉúÐÅÏ¢"<<endl;
-	cout<<"6£º²åÈëÒ»ÃûÑ§ÉúÐÅÏ¢"<<endl;
-	cout<<"7£ºÍ¨¹ýidÐÞ¸ÄÒ»ÃûÍ¬Ñ§ÐÅÏ¢ "<<endl;
-	cout<<"8£ºÉ¾³ýÒ»ÃûÑ§ÉúÐÅÏ¢  "<<endl;
-	cout<<"9£º±íµ¥Êä³ö "<<endl;
-	cout<<"10:ÍË³ö"<<endl; 
+	cout<<"0:ï¿½ï¿½Ê¼ï¿½ï¿½"<<endl; 
+	cout<<"1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½idï¿½ï¿½ï¿½ï¿½"<<endl; 
+	cout<<"2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¢ï¿½ï¿½É¼ï¿½ï¿½ï¿½ï¿½ï¿½"<<endl;
+	cout<<"3ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ§ï¿½É¼ï¿½ï¿½ï¿½ï¿½ï¿½"<<endl;
+	cout<<"4ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý½á¹¹ï¿½É¼ï¿½ï¿½ï¿½ï¿½ï¿½ "<<endl;
+	cout<<"5ï¿½ï¿½Í¨ï¿½ï¿½idï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ñ§ï¿½ï¿½ï¿½ï¿½Ï¢"<<endl;
+	cout<<"6ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ñ§ï¿½ï¿½ï¿½ï¿½Ï¢"<<endl;
+	cout<<"7ï¿½ï¿½Í¨ï¿½ï¿½idï¿½Þ¸ï¿½Ò»ï¿½ï¿½Í¬Ñ§ï¿½ï¿½Ï¢ "<<endl;
+	cout<<"8ï¿½ï¿½É¾ï¿½ï¿½Ò»ï¿½ï¿½Ñ§ï¿½ï¿½ï¿½ï¿½Ï¢  "<<endl;
+	cout<<"9ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ "<<endl;
+	cout<<"10:ï¿½Ë³ï¿½"<<endl; 
 	while(mark){
 		int a;
-		cout<<"Ñ¡Ôñ²Ù×÷£º";
+		cout<<"Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
 		cin>>a;
 		switch (a){
 			case 0: 	link.InitLink(m);break;
@@ -254,10 +254,10 @@ int main(int argc, char** argv) {
 			case 2: link.orderfromEngscore();break;
 			case 3: link.orderfromMathscore();break;
 			case 4: link.orderfromDatascore();break;
-			case 5: cout<<"ÊäÈëÑ§ºÅ£º";int b;cin>>b;link.showfromId(b);break;
+			case 5: cout<<"ï¿½ï¿½ï¿½ï¿½Ñ§ï¿½Å£ï¿½";int b;cin>>b;link.showfromId(b);break;
 			case 6: link.add();break;
-			case 7: cout<<"ÊäÈëÑ§ºÅ£º";int c;cin>>c;link.changefromId(c);break;
-			case 8: cout<<"ÊäÈëÑ§ºÅ£º";int d;cin>>d;link.DeletefromId(d);break;
+			case 7: cout<<"ï¿½ï¿½ï¿½ï¿½Ñ§ï¿½Å£ï¿½";int c;cin>>c;link.changefromId(c);break;
+			case 8: cout<<"ï¿½ï¿½ï¿½ï¿½Ñ§ï¿½Å£ï¿½";int d;cin>>d;link.DeletefromId(d);break;
 			case 9: link.ShowLink();break;
 			case 10: mark=0;break;
 		}
