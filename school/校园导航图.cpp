@@ -66,7 +66,6 @@ void Floyd(int start,int end)
 	}
 }
 
-
 int main()
 {
 	int start,end;
@@ -79,4 +78,4 @@ int main()
 		} 
 	} while(start!=0&&end!=0); 
     return 0;
-}
+} 
