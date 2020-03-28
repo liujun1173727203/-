@@ -1,0 +1,5 @@
+db:
+  dirver: mysql
+  url: /test?charset=utf8&parseTime=True&loc=Local
+  user: root
+  pass: 123456
